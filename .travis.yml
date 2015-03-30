@@ -1,28 +1,21 @@
 language: ruby
 rvm:
-  - 1.8.7
-  - 1.9.2
   - 1.9.3
   - 2.0.0
-  - ree
-  - jruby-18mode
+  - 2.1
+  - 2.2
   - jruby-19mode
   - rbx-2
-gemfile:
-  - Gemfile
-  - Gemfile.edge
+  - ruby-head
+
+env:
+  - "RAILS_VERSION=3.2"
+  - "RAILS_VERSION=4.0"
+  - "RAILS_VERSION=4.1"
+  - "RAILS_VERSION=4.2"
+  - "RAILS_VERSION=master"
+
 matrix:
-  allow_failures:
-    - gemfile: Gemfile.edge
-  exclude:
-    # Edge Rails is only compatible with 1.9.3
-    - gemfile: Gemfile.edge
-      rvm: 1.8.7
-    - gemfile: Gemfile.edge
-      rvm: 1.9.2
-    - gemfile: Gemfile.edge
-      rvm: ree
-    - gemfile: Gemfile.edge
-      rvm: jruby-18mode
-    - gemfile: Gemfile.edge
-      rvm: rbx-18mode
+allow_failures:
+  - rvm: ruby-head
+  - env: "RAILS_VERSION=master"
